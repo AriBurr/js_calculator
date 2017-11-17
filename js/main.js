@@ -6,8 +6,10 @@ var secondVal;
 var operator;
 var total = 0;
 
+
 keys.forEach(function(key){
   key.addEventListener("click", function(){
+    keypress(this);
     if ((/\*|X|\/|-|\+|\./g).test(key.id)) {
       firstVal = output.textContent;
       operator = key.id;
@@ -24,8 +26,16 @@ keys.forEach(function(key){
 });
 
 clear.addEventListener("click", function(){
+  keypress(this);
   reset();
 });
+
+function keypress(selector){
+  selector.classList.add("clicked");
+  setTimeout(function(){
+    selector.classList.remove("clicked");
+    }, 100);
+}
 
 function calculation() {
   firstVal = parseInt(firstVal);
